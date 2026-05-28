@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0b0c10;
+  --color-blood: #8a0303;
+  --color-crimson: #5e0202;
+  --color-rust: #8b4513;
+  --color-copper: #b87333;
+  --color-bone: #e3dac9;
+  --color-ash: #b2beb5;
+  --color-maroon: #800000;
+  --color-parchment: #f0e6d2;
+  --color-ember: #ff7e00;
+
+  --font-serif: 'Cinzel', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #0b0c10;
+    --foreground: #e3dac9;
+  }
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+/* Custom Scrollbar for specific containers if needed */
+.ritual-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.ritual-scroll::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+.ritual-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-crimson);
+}
