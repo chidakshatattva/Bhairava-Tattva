@@ -191,7 +191,7 @@ export default function InitiationRite() {
                     <div className="absolute inset-0 border border-ash/20 group-hover:border-blood/50 transition-colors" />
                     <div className="absolute inset-0 bg-blood/0 group-hover:bg-blood/10 transition-colors" />
                     <span className="relative font-serif tracking-[0.2em] text-sm group-hover:text-bone transition-colors">
-                      ENTER THE ARCHIVE
+                      ENTER THE CODEX
                     </span>
                   </button>
                 </div>

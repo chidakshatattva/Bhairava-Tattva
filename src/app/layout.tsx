@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
 const cinzel = Cinzel({ subsets: ["latin"], variable: '--font-serif' });
 
 export const metadata: Metadata = {
-  title: "Rebirth Through Awareness",
-  description: "A cinematic, psychologically immersive, spiritually transformative Knowledge Codex and Interactive Awareness System.",
+  title: "THE BHĀIRAVA CODEX",
+  description: "A sacred psychological archive merging tantra, consciousness studies, symbolic systems, and inner observation into an immersive path of self-deconstruction, awareness, and rebirth.",
 };
 
 export default function RootLayout({

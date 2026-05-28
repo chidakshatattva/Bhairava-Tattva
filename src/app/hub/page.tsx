@@ -66,8 +66,8 @@ export default function Hub() {
       {/* Top Bar */}
       <header className="relative z-10 flex justify-between items-end border-b border-ash/10 pb-6 mb-16">
         <div>
-          <h1 className="font-serif text-2xl md:text-3xl text-ash opacity-80 tracking-widest uppercase">The Archive</h1>
-          <p className="font-sans text-xs text-ash/40 tracking-[0.2em] uppercase mt-2">Classified Consciousness Interface</p>
+          <h1 className="font-serif text-2xl md:text-3xl text-ash opacity-80 tracking-widest uppercase">The Bhāirava Codex</h1>
+          <p className="font-sans text-xs text-ash/40 tracking-[0.2em] uppercase mt-2">Ancient Consciousness. Modern Perception. Inner Revolution.</p>
         </div>
         <div className="text-right">
           <p className="font-sans text-[10px] text-ash/50 uppercase tracking-widest mb-1">Active Vessel</p>
