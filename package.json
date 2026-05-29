@@ -6,10 +6,11 @@
     "dev": "next dev",
     "build": "npx prisma@5.14.0 generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npm run build"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0",
+    "@prisma/client": "5.14.0",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "clsx": "^2.1.1",
@@ -29,7 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.0-canary.66",
-    "prisma": "^5.14.0",
+    "prisma": "5.14.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
