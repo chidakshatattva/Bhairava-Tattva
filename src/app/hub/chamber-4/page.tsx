@@ -4,9 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Orbit } from "lucide-react";
+import { JournalModal } from "@/components/JournalModal";
 
 export default function ChamberFour() {
   const [scrollDepth, setScrollDepth] = useState(0);
+  const [isJournalOpen, setIsJournalOpen] = useState(false);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
@@ -23,7 +25,7 @@ export default function ChamberFour() {
           <span className="font-sans text-[10px] uppercase tracking-widest text-ash">Return to Archive</span>
         </Link>
         <div className="font-sans text-[10px] uppercase tracking-[0.3em] text-ash/40">
-          Chamber IV: Architecture
+          Chamber IV: The Shadow
         </div>
       </header>
 
@@ -40,7 +42,7 @@ export default function ChamberFour() {
            <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blood/10 to-transparent -translate-y-1/2"></div>
         </motion.div>
         
-        {/* The center point (Bhairava consciousness / The Absolute) */}
+        {/* The center point */}
         <motion.div 
           className="absolute w-4 h-4 bg-bone rounded-full blur-[2px]"
           style={{ 
@@ -59,11 +61,11 @@ export default function ChamberFour() {
           <section className="text-center">
             <Orbit className="w-12 h-12 text-blood mx-auto mb-8 opacity-60 animate-[spin_20s_linear_infinite]" />
             <h1 className="font-serif text-3xl md:text-5xl leading-tight mb-8">
-              The Architecture <br/> of Experience
+              The Subterranean <br/> Mechanisms
             </h1>
             <p className="font-sans font-light text-ash/70 text-lg leading-relaxed max-w-lg mx-auto">
-              Ancient traditions map consciousness through polarity. <br/>
-              The Stillness (The Observer) and The Movement (The Experience).
+              What controls you without your awareness? <br/>
+              The shadow is not evil. It is simply unobserved.
             </p>
             <div className="mt-24 text-[10px] uppercase tracking-[0.3em] text-ash/30 animate-pulse">
               Scroll downward to descend
@@ -72,48 +74,62 @@ export default function ChamberFour() {
 
           <section className="relative">
             <div className="absolute -left-8 top-0 w-[1px] h-full bg-gradient-to-b from-blood/50 to-transparent"></div>
-            <h2 className="font-serif text-2xl md:text-3xl text-crimson mb-6">1. The Canvas (Shiva)</h2>
+            <h2 className="font-serif text-2xl md:text-3xl text-crimson mb-6">1. The Unseen Driver</h2>
             <div className="space-y-6 text-ash/80 font-light font-sans text-lg">
-              <p>Consider a movie screen. The screen itself never burns when a fire is projected onto it. It never gets wet when an ocean is shown.</p>
-              <p>This is pure awareness. It is the underlying, unchanging, empty reality that allows all things to exist.</p>
-              <p className="italic text-bone">It is the silence you found in Chamber III.</p>
+              <p><span className="text-bone uppercase tracking-widest text-xs font-medium block mb-1">Psychological Perspective</span> Carl Jung said, "Until you make the unconscious conscious, it will direct your life and you will call it fate."</p>
+              <p>Your seemingly irrational reactions—sudden anger, intense need for validation, fear of failure—are highly rational mechanisms protecting a wounded part of your psyche.</p>
             </div>
           </section>
 
           <section className="relative">
              <div className="absolute -right-8 top-0 w-[1px] h-full bg-gradient-to-b from-ash/50 to-transparent"></div>
-            <h2 className="font-serif text-2xl md:text-3xl text-ash mb-6 text-right">2. The Projection (Shakti)</h2>
+            <h2 className="font-serif text-2xl md:text-3xl text-ash mb-6 text-right">2. Integration, Not Destruction</h2>
             <div className="space-y-6 text-ash/80 font-light font-sans text-lg text-right">
-              <p>If awareness is the screen, <span className="text-bone">experience</span> is the light dancing upon it.</p>
-              <p>Your thoughts, your emotions, the physical sensations of your body, the sound of the world... this is the dynamic, ever-changing energy of reality.</p>
-              <p>Suffering occurs when the screen believes it is the movie.</p>
+              <p>You cannot kill the shadow. You can only shine the light of the Observer upon it.</p>
+              <p><span className="text-bone uppercase tracking-widest text-xs font-medium block mb-1">Spiritual Perspective</span> Tantra teaches that nothing is rejected. The poison becomes the medicine when it is fully witnessed without judgment.</p>
             </div>
           </section>
 
           <section className="text-center bg-obsidian/80 backdrop-blur-md p-12 border border-ash/10">
-            <h2 className="font-serif text-3xl text-bone mb-8">Non-Separation</h2>
-            <div className="space-y-6 text-ash/70 font-light font-sans text-lg">
-              <p>The deepest teachings of the Vijnana Bhairava Tantra do not tell you to escape the world to find peace.</p>
-              <p>They teach that the chaos of the world *is* the expression of the silence.</p>
-              <p className="font-medium text-blood mt-8 text-xl italic">
-                &quot;When you realize the observer and the observed are the same machinery, the illusion of isolation collapses.&quot;
+            <h2 className="font-serif text-3xl text-bone mb-8">Observation Exercise</h2>
+            <div className="space-y-6 text-ash/70 font-light font-sans text-lg text-left">
+              <p>Recall a recent moment when you overreacted. A moment of intense defensiveness or anger.</p>
+              <p>Do not judge the reaction. Instead, ask the mechanism: <span className="italic text-bone">"What were you trying to protect?"</span></p>
+            </div>
+
+            <div className="pt-12 border-t border-ash/10 mt-12 space-y-8">
+              <h3 className="font-serif text-xl text-ash uppercase tracking-widest">Reflection</h3>
+              <p className="font-serif italic text-bone/90 max-w-lg mx-auto">
+                "What is a recurring negative pattern in my life, and what hidden fear is secretly keeping it alive?"
               </p>
+
+              <button
+                onClick={() => setIsJournalOpen(true)}
+                className="inline-flex items-center gap-3 border border-blood/30 bg-blood/5 px-8 py-4 font-serif uppercase tracking-widest text-sm text-bone hover:border-blood hover:bg-blood/20 transition-all"
+              >
+                Open Journal
+              </button>
             </div>
           </section>
 
-          <section className="text-center pt-[20vh]">
+          <section className="text-center pt-[10vh]">
             <p className="font-serif text-ash/50 uppercase tracking-[0.4em] mb-12">
-              End of Sequence
+              End of Sector 04
             </p>
-            <Link 
-              href="/hub"
-              className="group relative inline-flex items-center justify-center px-12 py-4 overflow-hidden"
-            >
-              <div className="absolute inset-0 border border-blood/40 group-hover:bg-blood/10 transition-all duration-500"></div>
-              <span className="relative font-serif tracking-[0.2em] text-sm text-bone group-hover:text-white">
-                COMPLETE INITIALIZATION
-              </span>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link
+                  href="/hub"
+                  className="border border-ash/20 px-8 py-3 font-serif uppercase tracking-widest text-xs text-ash hover:text-bone hover:border-ash/50 transition-all"
+                >
+                  Return to Hub
+                </Link>
+                {/* <Link
+                  href="/hub/chamber-5"
+                  className="border border-ash/20 px-8 py-3 font-serif uppercase tracking-widest text-xs text-ash hover:text-bone hover:border-ash/50 transition-all opacity-50 cursor-not-allowed"
+                >
+                  Proceed to Chamber V
+                </Link> */}
+              </div>
           </section>
 
         </div>
@@ -127,6 +143,12 @@ export default function ChamberFour() {
         />
       </div>
 
+      <JournalModal
+        chamber="Chamber IV: The Shadow"
+        prompt="What is a recurring negative pattern in my life, and what hidden fear is secretly keeping it alive?"
+        isOpen={isJournalOpen}
+        onClose={() => setIsJournalOpen(false)}
+      />
     </div>
   );
 }

@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export default function InitiationRite() {
   const [step, setStep] = useState(0);
   const [username, setUsername] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   
   // Cinematic timings
@@ -31,12 +33,43 @@ export default function InitiationRite() {
     if (step < 4) setStep(step + 1);
   };
 
-  const handleEnter = (e: React.FormEvent) => {
+  const handleEnter = async (e: React.FormEvent) => {
     e.preventDefault();
     if (username.trim().length > 0) {
-      // In a real app, this would hit the Next.js API to create/find user via Prisma
-      localStorage.setItem("initiate_username", username);
-      router.push("/hub");
+      setIsSubmitting(true);
+      try {
+        const { data, error } = await supabase
+          .from('initiates')
+          .select('*')
+          .eq('username', username.trim())
+          .single();
+
+        let initiateId;
+
+        if (error && error.code === 'PGRST116') {
+          // User doesn't exist, create them
+          const { data: newUser, error: insertError } = await supabase
+            .from('initiates')
+            .insert([{ username: username.trim(), progress: {} }])
+            .select()
+            .single();
+
+          if (insertError) throw insertError;
+          initiateId = newUser.id;
+        } else if (data) {
+          // User exists
+          initiateId = data.id;
+        }
+
+        if (initiateId) {
+          localStorage.setItem("initiate_username", username.trim());
+          localStorage.setItem("initiate_id", initiateId);
+          router.push("/hub");
+        }
+      } catch (err) {
+        console.error("Failed to initialize vessel:", err);
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -185,13 +218,13 @@ export default function InitiationRite() {
                 <div className="pt-4 flex justify-center">
                   <button 
                     type="submit"
-                    disabled={!username.trim()}
+                    disabled={!username.trim() || isSubmitting}
                     className="group relative px-8 py-3 overflow-hidden disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                   >
                     <div className="absolute inset-0 border border-ash/20 group-hover:border-blood/50 transition-colors" />
                     <div className="absolute inset-0 bg-blood/0 group-hover:bg-blood/10 transition-colors" />
                     <span className="relative font-serif tracking-[0.2em] text-sm group-hover:text-bone transition-colors">
-                      ENTER THE CODEX
+                      {isSubmitting ? "SYNCING..." : "ENTER THE CODEX"}
                     </span>
                   </button>
                 </div>
