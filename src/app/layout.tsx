@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
+import { AudioProvider } from "@/components/AudioProvider";
+import { UserProvider } from "@/components/UserProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
 const cinzel = Cinzel({ subsets: ["latin"], variable: '--font-serif' });
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cinzel.variable} antialiased bg-obsidian text-bone min-h-screen selection:bg-blood selection:text-bone`}>
-        {children}
+        <UserProvider>
+          <AudioProvider>
+            {children}
+          </AudioProvider>
+        </UserProvider>
       </body>
     </html>
   );

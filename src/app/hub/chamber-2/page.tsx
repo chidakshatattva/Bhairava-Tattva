@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Focus, Eye } from "lucide-react";
+import { JournalModal } from "@/components/JournalModal";
 
 export default function ChamberTwo() {
   const [isObserving, setIsObserving] = useState(false);
   const [focusTime, setFocusTime] = useState(0);
   const [complete, setComplete] = useState(false);
+  const [isJournalOpen, setIsJournalOpen] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Interaction mechanics
@@ -42,7 +44,7 @@ export default function ChamberTwo() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-obsidian text-bone overflow-x-hidden selection:bg-blood">
+    <div className="min-h-screen bg-obsidian text-bone overflow-x-hidden selection:bg-blood flex flex-col relative">
       <header className="fixed top-0 left-0 w-full p-6 md:p-8 z-50 flex justify-between items-center mix-blend-difference pointer-events-none">
         <Link href="/hub" className="pointer-events-auto group flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
           <ArrowLeft className="w-4 h-4 text-ash group-hover:text-blood transition-colors" />
@@ -69,6 +71,7 @@ export default function ChamberTwo() {
                 Attention is <span className="text-crimson italic">Reality Selection</span>
               </h1>
               <p className="font-sans font-light text-ash/70 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+                <span className="text-bone uppercase tracking-widest text-xs font-medium block mb-2">Why It Matters</span>
                 What you focus on becomes your world. If you cannot control your attention, you do not control your reality.
               </p>
             </motion.div>
@@ -178,7 +181,7 @@ export default function ChamberTwo() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2 }}
-            className="max-w-2xl w-full mx-auto relative z-10 text-center space-y-12"
+            className="max-w-3xl w-full mx-auto relative z-10 text-center space-y-12"
           >
             <Focus className="w-12 h-12 text-blood mx-auto mb-8 opacity-80" />
             
@@ -188,21 +191,48 @@ export default function ChamberTwo() {
             
             <div className="space-y-6 text-ash/80 font-light font-sans text-lg md:text-xl leading-relaxed text-left border-l border-blood/40 pl-6 py-2 bg-gradient-to-r from-blood/5 to-transparent">
               <p>You have just collapsed the external noise into a single point.</p>
-              <p>This is the fundamental mechanic of reality filtering. The nervous system prioritizes what you sustain attention upon.</p>
+              <p><span className="text-bone font-medium text-sm tracking-widest uppercase">Everyday Example:</span> When you walk into a room and only notice the mess, your reality is stressful. When you walk into the exact same room and notice the sunlight on the floor, your reality is peaceful. The room didn't change; the aperture of your attention did.</p>
               <p className="font-medium text-bone">Mastery of self is not eliminating chaotic thoughts; it is the ability to withdraw attention from them at will.</p>
             </div>
 
-            <div className="pt-12">
+            <div className="pt-8 border-t border-ash/10 text-center space-y-8">
+              <h3 className="font-serif text-xl text-ash uppercase tracking-widest">Reflection</h3>
+              <p className="font-serif italic text-bone/90 max-w-lg mx-auto">
+                "Where is your attention most frequently stolen? And who (or what) profits from stealing it?"
+              </p>
+
+              <button
+                onClick={() => setIsJournalOpen(true)}
+                className="inline-flex items-center gap-3 border border-blood/30 bg-blood/5 px-8 py-4 font-serif uppercase tracking-widest text-sm text-bone hover:border-blood hover:bg-blood/20 transition-all"
+              >
+                Open Journal
+              </button>
+            </div>
+
+            <div className="pt-8 flex flex-col sm:flex-row gap-6 justify-center">
               <Link 
                 href="/hub"
-                className="inline-block border border-ash/20 px-8 py-3 font-serif uppercase tracking-widest text-sm text-ash hover:text-bone hover:border-blood/50 hover:bg-blood/5 transition-all"
+                className="border border-ash/20 px-8 py-3 font-serif uppercase tracking-widest text-xs text-ash hover:text-bone hover:border-ash/50 transition-all"
               >
                 Return to Hub
+              </Link>
+              <Link
+                href="/hub/chamber-3"
+                className="border border-ash/20 px-8 py-3 font-serif uppercase tracking-widest text-xs text-ash hover:text-bone hover:border-blood/50 transition-all"
+              >
+                Proceed to Chamber III
               </Link>
             </div>
           </motion.div>
         )}
       </main>
+
+      <JournalModal
+        chamber="Chamber II: The Observer"
+        prompt="Where is your attention most frequently stolen? And who (or what) profits from stealing it?"
+        isOpen={isJournalOpen}
+        onClose={() => setIsJournalOpen(false)}
+      />
     </div>
   );
 }
