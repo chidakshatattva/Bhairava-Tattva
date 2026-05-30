@@ -3,6 +3,7 @@ import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/components/AudioProvider";
 import { UserProvider } from "@/components/UserProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
 const cinzel = Cinzel({ subsets: ["latin"], variable: '--font-serif' });
@@ -25,6 +26,7 @@ export default function RootLayout({
             {children}
           </AudioProvider>
         </UserProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

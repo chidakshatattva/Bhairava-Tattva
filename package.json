@@ -10,10 +10,11 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "@prisma/client": "5.14.0",
+    "@prisma/client": "^5.14.0",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@supabase/supabase-js": "^2.106.2",
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",
@@ -31,7 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.0-canary.66",
-    "prisma": "5.14.0",
+    "prisma": "^5.14.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
